@@ -13,6 +13,7 @@ public class Karel {
 //    Technical Constants
     private static final int rows = 5;
     private static final int columns = 5;
+    private static final int delay = 500;
 
 
 //    Calculated Constants
@@ -25,7 +26,7 @@ public class Karel {
     //Karel Starting Position
     private static final int startPosX = 0;
     private static final int startPosY = 0;
-    private static final int startDirection = 1;
+    private static final int startDirection = 3;
 
     //Karel Current Position Initialisation
     protected static int posX;
@@ -62,11 +63,9 @@ public class Karel {
 
     public static void main(String[] args) {
         new Karel();
-//        move();
     }
 
     public static void move() {
-        int delay = 500;
         Timer timer = new Timer(delay, e -> {
             if (currentDirection == 0) {
                 posX++;
@@ -81,6 +80,14 @@ public class Karel {
         });
         timer.setRepeats(false);
         timer.start();
+    }
 
+    public static void turnRight() {
+        Timer timer = new Timer(delay, e -> {
+            currentDirection = (currentDirection + 1)%4;
+            panel.repaint();
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
 }
