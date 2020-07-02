@@ -20,6 +20,7 @@ public class Render extends JPanel {
     }
 
     private static Font monoFont = new Font("Monospaced", Font.PLAIN, 12);
+
     @Override
     public void paint(Graphics g) {
         g.setColor(Color.WHITE);
