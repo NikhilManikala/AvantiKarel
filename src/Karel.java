@@ -28,12 +28,15 @@ public class Karel {
     private static final int startDirection = 0;
 
     //Karel Current Position Initialisation
-    private static int posX;
-    private static int posY;
-    private static int currentDirection;
+    protected static int posX;
+    protected static int posY;
+    protected static int currentDirection;
 
     public Karel() {
         setupJFrame();
+        posX = startPosX;
+        posY = startPosY;
+        currentDirection = startDirection;
     }
 
     private void setupJFrame() {
@@ -56,5 +59,11 @@ public class Karel {
 
     public static void main(String[] args) {
         new Karel();
+    }
+
+    public static void move() {
+        if (currentDirection == 0) {
+            posX++;
+        }
     }
 }
