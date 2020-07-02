@@ -24,13 +24,15 @@ public class Karel {
 
     //Karel Starting Position
     private static final int startPosX = 0;
-    private static final int startPosY = 4;
-    private static final int startDirection = 0;
+    private static final int startPosY = 0;
+    private static final int startDirection = 1;
 
     //Karel Current Position Initialisation
     protected static int posX;
     protected static int posY;
     protected static int currentDirection;
+
+    private static KarelPanel panel;
 
     public Karel() {
         setupJFrame();
@@ -42,7 +44,8 @@ public class Karel {
     private void setupJFrame() {
 
         JFrame f= new JFrame("Karel R");
-        KarelPanel panel= new KarelPanel(paddingX, paddingY, cellWidth, cellHeight, rows, columns);
+        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        panel= new KarelPanel(paddingX, paddingY, cellWidth, cellHeight, rows, columns);
 
         f.setBackground(Color.LIGHT_GRAY);
 
@@ -59,11 +62,25 @@ public class Karel {
 
     public static void main(String[] args) {
         new Karel();
+//        move();
     }
 
     public static void move() {
-        if (currentDirection == 0) {
-            posX++;
-        }
+        int delay = 500;
+        Timer timer = new Timer(delay, e -> {
+            if (currentDirection == 0) {
+                posX++;
+            } else if (currentDirection == 1) {
+                posY++;
+            } else if(currentDirection == 2) {
+                posX--;
+            } else if (currentDirection == 3) {
+                posY--;
+            }
+            panel.repaint();
+        });
+        timer.setRepeats(false);
+        timer.start();
+
     }
 }
