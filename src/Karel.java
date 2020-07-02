@@ -19,7 +19,7 @@ public class Karel {
     private static final int panelHeight = rows*cellHeight;
 
     private static final int windowWidth = panelWidth + 10*paddingX;
-    private static final int windowHeigth = panelHeight + 3*paddingY;
+    private static final int windowHeight = panelHeight + 3*paddingY;
 
     public Karel() {
         setupJFrame();
@@ -36,15 +36,14 @@ public class Karel {
         panel.setBackground(Color.WHITE);
 
         f.add(panel);
-        f.setSize(windowWidth, windowHeigth);
+        f.setSize(windowWidth, windowHeight);
 
 
         f.setLayout(null);
         f.setVisible(true);
     }
 
-    public static void main(String args[])
-    {
+    public static void main(String[] args) {
         new Karel();
     }
 }
