@@ -1,5 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
+
 public class Karel {
 //    Graphical Constants
     private static final int paddingX = 40;
@@ -20,6 +21,16 @@ public class Karel {
 
     private static final int windowWidth = panelWidth + 10*paddingX;
     private static final int windowHeight = panelHeight + 3*paddingY;
+
+    //Karel Starting Position
+    private static final int startPosX = 0;
+    private static final int startPosY = 4;
+    private static final int startDirection = 0;
+
+    //Karel Current Position Initialisation
+    private static int posX;
+    private static int posY;
+    private static int currentDirection;
 
     public Karel() {
         setupJFrame();
