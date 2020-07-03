@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
 import javax.swing.*;
 
@@ -145,7 +146,7 @@ public class Karel {
     }
 
     public static boolean beepersPresent() {
-        if (techBeepers[techPosX][techPosY]>0){
+        if (techBeepers[techPosY][techPosX]>0){
             return true;
         } else {
             return false;
@@ -155,7 +156,6 @@ public class Karel {
     public static void turnRight() {
         techCurrentDirection = (techCurrentDirection + 1)%4;
         toDraw.add("TurnRight");
-//        System.out.println(toDraw);
     }
 
 }
