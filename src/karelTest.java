@@ -1,4 +1,8 @@
 public class karelTest extends Karel{
+    public static void main(String[] args) {
+        new karelTest();
+    }
+
     public void run(){
         putBeeper();
         move();

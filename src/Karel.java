@@ -3,7 +3,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 
-public class Karel {
+public abstract class Karel {
 
     static Constants constants = new Constants();
 
@@ -114,16 +114,14 @@ public class Karel {
     }
 
     protected boolean beepersPresent() {
-        if (techBeepers[techPosY][techPosX]>0){
-            return true;
-        } else {
-            return false;
-        }
+        return techBeepers[techPosY][techPosX] > 0;
     }
 
     protected void turnRight() {
         techCurrentDirection = (techCurrentDirection + 1)%4;
         toDraw.add("TurnRight");
     }
+
+    protected abstract void run();
 
 }

@@ -5,6 +5,7 @@ public class Constants {
     protected final int columns = 5;
     protected final int minSpeed = 0;
     protected final int maxSpeed = 500;
+    protected final int defaultSpeed = 250;
 
     //Graphical Constants
     protected final int paddingX = 40;

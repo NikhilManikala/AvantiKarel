@@ -7,9 +7,9 @@ public class KarelFrame extends JFrame {
 
     protected KarelPanel panel;
 
-    protected final RunButton run = new RunButton();
-    protected final ResetButton reset = new ResetButton(k);
-    protected final SpeedSlider speedSlider = new SpeedSlider();
+    protected final SpeedSlider speedSlider;
+    protected final RunButton run;
+    protected final ResetButton reset;
 
     public KarelFrame(Karel parameterKarel) {
         k = parameterKarel;
@@ -25,9 +25,12 @@ public class KarelFrame extends JFrame {
         add(panel);
 
 //      Add Buttons and Sliders
+        speedSlider = new SpeedSlider(k);
+        run = new RunButton(k);
+        reset = new ResetButton(k);
+        add(speedSlider);
         add(run);
         add(reset);
-        add(speedSlider);
 
 //      Setup
         setSize(constants.panelWidth + constants.paddingMultiplierX * constants.paddingX,

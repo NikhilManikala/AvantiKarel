@@ -6,13 +6,18 @@ import java.util.ArrayList;
 public class RunButton extends JButton {
     Karel k;
     static Constants constants = new Constants();
+//    karelTest F = new karelTest();
 
-    ActionListener runPress = e -> {
-        k.speed = k.f.speedSlider.getValue();
-        k.toDraw = new ArrayList<>();
-        karelTest.run();
-        k.draw();
+    ActionListener runPress = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            k.speed = k.f.speedSlider.getValue();
+            k.toDraw = new ArrayList<>();
+            k.run();
+            k.draw();
+        }
     };
+
 
     public RunButton(Karel parameterKarel){
         k = parameterKarel;

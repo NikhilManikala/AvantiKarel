@@ -9,7 +9,7 @@ public class SpeedSlider extends JSlider {
 
         setMinimum(constants.minSpeed);
         setMaximum(constants.maxSpeed);
-        setValue(k.speed);
+        setValue(constants.defaultSpeed);
 
         setBounds(2*constants.paddingX + constants.panelWidth,constants.paddingY+constants.cellHeight,
                 195,30);
