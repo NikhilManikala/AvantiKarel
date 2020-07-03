@@ -24,8 +24,18 @@ public class KarelPanel extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         drawGrid(g);
-        drawBeeper(g, 2, 3,cellWidth, cellHeight, 3);
+        drawAllBeepers(g);
         drawKarel(g, Karel.graphPosX, Karel.graphPosY, Karel.graphCurrentDirection, cellWidth, cellHeight);
+    }
+
+    private void drawAllBeepers(Graphics g) {
+        for (int row = 0; row < Karel.graphBeepers.length; row++) {
+            for (int col = 0; col < Karel.graphBeepers[row].length; col++) {
+                if (Karel.graphBeepers[row][col]>0){
+                    drawBeeper(g, row, col, cellWidth, cellHeight, Karel.graphBeepers[row][col]);
+                }
+            }
+        }
     }
 
     private void drawGrid(Graphics g) {
@@ -82,8 +92,8 @@ public class KarelPanel extends JPanel {
             xShiftList[id] = workingX;
             yShiftList[id] = workingY;
         }
-        System.out.println(Arrays.toString(xShiftList));
-        System.out.println(Arrays.toString(yShiftList));
+//        System.out.println(Arrays.toString(xShiftList));
+//        System.out.println(Arrays.toString(yShiftList));
 
         int[] xCoordList = new int[xShiftList.length];
         int[] yCoordList = new int[yShiftList.length];
@@ -93,8 +103,8 @@ public class KarelPanel extends JPanel {
             yCoordList[id] = (int) ((y + yShiftList[id])*cellHeight);
         }
 
-        System.out.println(Arrays.toString(xCoordList));
-        System.out.println(Arrays.toString(yCoordList));
+//        System.out.println(Arrays.toString(xCoordList));
+//        System.out.println(Arrays.toString(yCoordList));
 
         g.setColor(Color.black);
         g.drawPolygon(splice(xCoordList,0, 5), splice(yCoordList, 0, 5), 6);
@@ -109,7 +119,7 @@ public class KarelPanel extends JPanel {
         for (int i = 0; i < (end-start+1); i++) {
             toReturn[i]=list[i+start];
         }
-        System.out.println(Arrays.toString(toReturn));
+//        System.out.println(Arrays.toString(toReturn));
         return toReturn;
     }
 }

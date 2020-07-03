@@ -19,11 +19,11 @@ public class Karel {
     private static final int rows = 5;
     private static final int columns = 5;
     private static final int minDelay = 0;
-    private static final int maxDelay = 2000;
+    private static final int maxDelay = 500;
 
+    private static int firstError;
 
-
-//    Calculated Constants
+    //    Calculated Constants
     private static final int panelWidth = columns*cellWidth;
     private static final int panelHeight = rows*cellHeight;
 
@@ -48,6 +48,8 @@ public class Karel {
 
     private static KarelPanel panel;
 
+    protected static int[][] techBeepers = new int[rows][columns];
+    protected static int[][] graphBeepers = new int[rows][columns];
 
     private static void setupJFrame() {
 
@@ -63,7 +65,7 @@ public class Karel {
         f.add(panel);
         f.setSize(windowWidth, windowHeight);
 
-        JSlider speedSlider = new JSlider(-100, 100, 50);
+        JSlider speedSlider = new JSlider(minDelay, maxDelay, speed);
         speedSlider.setBounds(2*paddingX + panelWidth,paddingY+cellHeight,195,30);
 
         Hashtable<Integer, JLabel> position = new Hashtable<Integer, JLabel>();
@@ -79,13 +81,32 @@ public class Karel {
         b.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 speed = speedSlider.getValue();
+                toDraw = new ArrayList<String>();
                 karelTest.run();
-                draw();
+                draw(f);
             }
         });
         f.add(b);
-        
-        
+
+        JButton c=new JButton("Reset");
+        c.setBounds(2*paddingX + panelWidth, (int) (paddingY +(0.5*cellHeight)),95,30);
+        c.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                toDraw = new ArrayList<String>();
+                techPosX=startPosX;
+                techPosY=startPosY;
+                techCurrentDirection=startDirection;
+
+                graphPosX=startPosX;
+                graphPosY=startPosY;
+                graphCurrentDirection=startDirection;
+
+                panel.repaint();
+            }
+        });
+        f.add(c);
+
+
         f.setLayout(null);
         f.setVisible(true);
     }
@@ -100,7 +121,7 @@ public class Karel {
         graphCurrentDirection = startDirection;
     }
 
-    public static void draw() {
+    public static void draw(Frame f) {
         Timer timer = new Timer(speed, new ActionListener() {
             private int counter;
 
@@ -110,17 +131,30 @@ public class Karel {
                     drawMove();
                 } else if (toDraw.get(counter).equals("TurnRight")){
                     drawTurnRight();
+                } else if (toDraw.get(counter).equals("PutBeeper")){
+                    drawPutBeeper();
+                } else if (toDraw.get(counter).equals("PickBeeper")){
+                    drawPickBeeper();
+                } else if (toDraw.get(counter).equals("NoBeeperError")){
+                    JOptionPane.showMessageDialog(f, "There is no Beeper Present Here");
                 }
                 panel.repaint();
                 counter++;
 
-                if (counter == toDraw.size()) {
+                if (counter == toDraw.size() || counter == firstError) {
                     ((Timer)e.getSource()).stop();
                 }
             }
         });
         timer.start();
 
+    }
+
+    private static void drawPutBeeper() {
+        graphBeepers[graphPosX][graphPosY]++;
+    }
+    private static void drawPickBeeper() {
+        graphBeepers[graphPosX][graphPosY]--;
     }
 
     private static void drawTurnRight() {
@@ -140,7 +174,6 @@ public class Karel {
     }
 
     public static void move() {
-//        System.out.println("Move");
         if (techCurrentDirection == 0) {
             techPosX++;
         } else if (techCurrentDirection == 1) {
@@ -151,6 +184,30 @@ public class Karel {
             techPosY--;
         }
         toDraw.add("Move");
+    }
+
+    public static void putBeeper(){
+        techBeepers[techPosY][techPosX]++;
+        toDraw.add("PutBeeper");
+    }
+
+    public static void pickBeeper(){
+        if (beepersPresent()){
+            techBeepers[techPosY][techPosX]--;
+            toDraw.add("PickBeeper");
+        } else {
+            toDraw.add("NoBeeperError");
+            firstError = toDraw.size();
+        }
+
+    }
+
+    public static boolean beepersPresent() {
+        if (techBeepers[techPosX][techPosY]>0){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static void turnRight() {
