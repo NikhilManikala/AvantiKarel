@@ -1,26 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
 
 public class KarelPanel extends JPanel {
-    int paddingX;
-    int paddingY;
-    int cellWidth;
-    int cellHeight;
-    int rows;
-    int columns;
 
-    public KarelPanel(){
-        paddingX = Karel.paddingX;
-        paddingY = Karel.paddingY;
-        cellWidth = Karel.cellWidth;
-        cellHeight = Karel.cellHeight;
-        rows = Karel.rows;
-        columns = Karel.columns;
+    static Constants constants = new Constants();
+    Karel k;
 
+    public KarelPanel(Karel parameterKarel){
+        k = parameterKarel;
 
         setBackground(Color.WHITE);
-        setBounds(paddingX, paddingY, Karel.panelWidth, Karel.panelHeight);
+        setBounds(constants.paddingX, constants.paddingY, constants.columns * constants.cellWidth,
+                constants.rows * constants.cellHeight);
     }
 
     @Override
@@ -28,14 +19,15 @@ public class KarelPanel extends JPanel {
         super.paint(g);
         drawGrid(g);
         drawAllBeepers(g);
-        drawKarel(g, Karel.graphPosX, Karel.graphPosY, Karel.graphCurrentDirection, cellWidth, cellHeight);
+        drawKarel(g, Karel.graphPosX, Karel.graphPosY, Karel.graphCurrentDirection,
+                constants.cellWidth, constants.cellHeight);
     }
 
     private void drawAllBeepers(Graphics g) {
-        for (int row = 0; row < Karel.graphBeepers.length; row++) {
-            for (int col = 0; col < Karel.graphBeepers[row].length; col++) {
-                if (Karel.graphBeepers[row][col]>0){
-                    drawBeeper(g, row, col, cellWidth, cellHeight, Karel.graphBeepers[row][col]);
+        for (int row = 0; row < k.graphBeepers.length; row++) {
+            for (int col = 0; col < k.graphBeepers[row].length; col++) {
+                if (k.graphBeepers[row][col]>0){
+                    drawBeeper(g, row, col, constants.cellWidth, constants.cellHeight, k.graphBeepers[row][col]);
                 }
             }
         }
@@ -43,10 +35,10 @@ public class KarelPanel extends JPanel {
 
     private void drawGrid(Graphics g) {
         int rad = 2;
-        for (int row = 0; row < rows; row++) {
-            int centerX = (int) ((row+0.5)*cellWidth);
-            for (int col = 0; col < columns; col++) {
-                int centerY = (int) ((col+0.5)*cellHeight);
+        for (int row = 0; row < constants.rows; row++) {
+            int centerX = (int) ((row+0.5) * constants.cellWidth);
+            for (int col = 0; col < constants.columns; col++) {
+                int centerY = (int) ((col+0.5) * constants.cellHeight);
                 g.fillOval(centerX-rad, centerY-rad, 2*rad, 2*rad);
             }
         }
@@ -59,7 +51,7 @@ public class KarelPanel extends JPanel {
         int x4 = ((x) * cellWidth);
         int y1 = ((y) * cellHeight);
         int y2 = (int) ((y + 0.5) * cellHeight);
-        int y3 = (int) ((y + 1) * cellHeight);
+        int y3 = ((y + 1) * cellHeight);
         int y4 = (int) ((y + 0.5) * cellHeight);
 
         g.setColor(Color.lightGray);
@@ -76,15 +68,15 @@ public class KarelPanel extends JPanel {
         for (int id = 0; id < xShiftList.length; id++) {
             double workingX=xShiftList[id];
             double workingY=yShiftList[id];
+
             for (int i = 0; i < dir; i++) {
                 double tempX = workingX;
                 double tempY = workingY;
                 workingX = (-1)*tempY;
                 workingY = tempX;
             }
-            if (dir == 0){
 
-            } else if (dir == 1) {
+            if (dir == 1) {
                 workingX ++;
             } else if (dir == 2) {
                 workingX ++;
@@ -92,11 +84,10 @@ public class KarelPanel extends JPanel {
             } else if (dir == 3) {
                 workingY ++;
             }
+
             xShiftList[id] = workingX;
             yShiftList[id] = workingY;
         }
-//        System.out.println(Arrays.toString(xShiftList));
-//        System.out.println(Arrays.toString(yShiftList));
 
         int[] xCoordList = new int[xShiftList.length];
         int[] yCoordList = new int[yShiftList.length];
@@ -105,9 +96,6 @@ public class KarelPanel extends JPanel {
             xCoordList[id] = (int) ((x + xShiftList[id])*cellWidth);
             yCoordList[id] = (int) ((y + yShiftList[id])*cellHeight);
         }
-
-//        System.out.println(Arrays.toString(xCoordList));
-//        System.out.println(Arrays.toString(yCoordList));
 
         g.setColor(Color.black);
         g.drawPolygon(splice(xCoordList,0, 5), splice(yCoordList, 0, 5), 6);
