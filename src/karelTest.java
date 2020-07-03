@@ -1,5 +1,5 @@
 public class karelTest extends Karel{
-    public static void run(){
+    public void run(){
         putBeeper();
         move();
         turnRight();
@@ -11,7 +11,7 @@ public class karelTest extends Karel{
         move();
     }
 
-    private static void turnLeft() {
+    private void turnLeft() {
         for (int i = 0; i < 3; i++) {
             turnRight();
         }
