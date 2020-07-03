@@ -1,12 +1,18 @@
 import javax.swing.*;
 
 public class SpeedSlider extends JSlider {
-    public SpeedSlider(){
-        setMinimum(Karel.minDelay);
-        setMaximum(Karel.maxDelay);
-        setValue(Karel.speed);
+    Karel k;
+    static Constants constants = new Constants();
 
-        setBounds(2*Karel.paddingX + Karel.panelWidth,Karel.paddingY+Karel.cellHeight,195,30);
+    public SpeedSlider(Karel parameterKarel){
+        k = parameterKarel;
+
+        setMinimum(constants.minSpeed);
+        setMaximum(constants.maxSpeed);
+        setValue(k.speed);
+
+        setBounds(2*constants.paddingX + constants.panelWidth,constants.paddingY+constants.cellHeight,
+                195,30);
     }
 
 }
