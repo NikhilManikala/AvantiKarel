@@ -1,6 +1,6 @@
-public class karelTest extends Karel{
+public class KarelTest extends Karel{
     public static void main(String[] args) {
-        new karelTest();
+        new KarelTest();
     }
 
     public void run(){

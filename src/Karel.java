@@ -73,26 +73,20 @@ public abstract class Karel {
     }
 
     private void drawMove() {
-        if (graphCurrentDirection == 0) {
-            graphPosX++;
-        } else if (graphCurrentDirection == 1) {
-            graphPosY++;
-        } else if(graphCurrentDirection == 2) {
-            graphPosX--;
-        } else if (graphCurrentDirection == 3) {
-            graphPosY--;
+        switch (graphCurrentDirection) {
+            case 0 -> graphPosX++;
+            case 1 -> graphPosY++;
+            case 2 -> graphPosX--;
+            case 3 -> graphPosY--;
         }
     }
 
     protected void move() {
-        if (techCurrentDirection == 0) {
-            techPosX++;
-        } else if (techCurrentDirection == 1) {
-            techPosY++;
-        } else if(techCurrentDirection == 2) {
-            techPosX--;
-        } else if (techCurrentDirection == 3) {
-            techPosY--;
+        switch (techCurrentDirection) {
+            case 0 -> techPosX++;
+            case 1 -> techPosY++;
+            case 2 -> techPosX--;
+            case 3 -> techPosY--;
         }
         toDraw.add("Move");
     }
