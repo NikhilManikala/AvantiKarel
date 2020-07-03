@@ -11,17 +11,17 @@ public class Karel {
     private int firstError;
 
     //Karel Current Position Initialisation
-    protected static int techPosX;
-    protected static int techPosY;
-    protected static int techCurrentDirection;
+    protected int techPosX;
+    protected int techPosY;
+    protected int techCurrentDirection;
 
-    protected static int graphPosX;
-    protected static int graphPosY;
-    protected static int graphCurrentDirection;
+    protected int graphPosX;
+    protected int graphPosY;
+    protected int graphCurrentDirection;
 
     protected ArrayList<String> toDraw = new ArrayList<>();
 
-    private static KarelFrame f;
+    protected KarelFrame f;
 
     protected int[][] techBeepers = new int[constants.rows][constants.columns];
     protected int[][] graphBeepers = new int[constants.rows][constants.columns];

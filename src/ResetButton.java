@@ -4,27 +4,32 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ResetButton extends JButton {
+    Karel k;
+    static Constants constants = new Constants();
+
     ActionListener runPress = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            Karel.techBeepers = new int[Karel.rows][Karel.columns];
-            Karel.graphBeepers = new int[Karel.rows][Karel.columns];
-            Karel.toDraw = new ArrayList<String>();
-            Karel.techPosX = Karel.startPosX;
-            Karel.techPosY = Karel.startPosY;
-            Karel.techCurrentDirection = Karel.startDirection;
+            k.techBeepers = new int[constants.rows][constants.columns];
+            k.graphBeepers = new int[constants.rows][constants.columns];
+            k.toDraw = new ArrayList<String>();
+            k.techPosX = constants.startPosX;
+            k.techPosY = constants.startPosY;
+            k.techCurrentDirection = constants.startDirection;
 
-            Karel.graphPosX = Karel.startPosX;
-            Karel.graphPosY = Karel.startPosY;
-            Karel.graphCurrentDirection = Karel.startDirection;
+            k.graphPosX = constants.startPosX;
+            k.graphPosY = constants.startPosY;
+            k.graphCurrentDirection = constants.startDirection;
 
-            KarelFrame.panel.repaint();
+            k.f.panel.repaint();
 
         }
     };
 
-    public ResetButton(){
-        setBounds(2*Karel.paddingX+Karel.panelWidth, (int) (Karel.paddingY + (0.5*Karel.cellHeight)), 95, 30);
+    public ResetButton(Karel parameterKarel){
+        k = parameterKarel;
+        setBounds(2*constants.paddingX+constants.panelWidth, (int) (constants.paddingY + (0.5*constants.cellHeight)),
+                95, 30);
         setText("Reset");
         addActionListener(runPress);
     }

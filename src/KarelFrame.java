@@ -5,11 +5,11 @@ public class KarelFrame extends JFrame {
     static Constants constants = new Constants();
     Karel k;
 
-    protected static KarelPanel panel;
+    protected KarelPanel panel;
 
-    protected static final RunButton run = new RunButton();
-    protected static final ResetButton reset = new ResetButton();
-    protected static final SpeedSlider speedSlider = new SpeedSlider();
+    protected final RunButton run = new RunButton();
+    protected final ResetButton reset = new ResetButton(k);
+    protected final SpeedSlider speedSlider = new SpeedSlider();
 
     public KarelFrame(Karel parameterKarel) {
         k = parameterKarel;
