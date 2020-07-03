@@ -1,35 +1,32 @@
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Hashtable;
 import javax.swing.*;
 
 public class Karel {
 
-//    Graphical Constants
-    protected  static final int paddingX = 40;
-    protected  static final int paddingY = 40;
-    protected  static final int cellWidth = 100;
-    protected  static final int cellHeight = 100;
+    //Graphical Constants
+    protected final int paddingX = 40;
+    protected final int paddingY = 40;
+    protected final int cellWidth = 100;
+    protected final int cellHeight = 100;
 
 
-    //    Technical Constants
-    protected  static final int rows = 5;
-    protected  static final int columns = 5;
-    protected static final int minDelay = 0;
-    protected static final int maxDelay = 500;
-    protected static int speed = 250;
+    //Technical Constants
+    protected final int rows = 5;
+    protected final int columns = 5;
+    protected final int minDelay = 0;
+    protected final int maxDelay = 500;
+    protected int speed = 250;
 
-    private static int firstError;
+    private int firstError;
 
-    //    Calculated Constants
-    protected static final int panelWidth = columns*cellWidth;
-    protected static final int panelHeight = rows*cellHeight;
+    //Calculated Constants
+    protected final int panelWidth = columns*cellWidth;
+    protected final int panelHeight = rows*cellHeight;
 
-    protected static final int windowWidth = panelWidth + 10*paddingX;
-    protected static final int windowHeight = panelHeight + 3*paddingY;
+    protected final int windowWidth = panelWidth + 10*paddingX;
+    protected final int windowHeight = panelHeight + 3*paddingY;
 
     //Karel Starting Position
     protected static final int startPosX = 0;
@@ -45,17 +42,17 @@ public class Karel {
     protected static int graphPosY;
     protected static int graphCurrentDirection;
 
-    protected static ArrayList<String> toDraw = new ArrayList<String>();
+    protected ArrayList<String> toDraw = new ArrayList<String>();
 
-    private static KarelPanel panel;
+    private KarelPanel panel;
     private static KarelFrame f;
 
-    protected static int[][] techBeepers = new int[rows][columns];
-    protected static int[][] graphBeepers = new int[rows][columns];
+    protected int[][] techBeepers = new int[rows][columns];
+    protected int[][] graphBeepers = new int[rows][columns];
 
 
     public static void main(String[] args) {
-        KarelFrame f = new KarelFrame();
+        f = new KarelFrame();
         techPosX = startPosX;
         techPosY = startPosY;
         techCurrentDirection = startDirection;
@@ -64,22 +61,18 @@ public class Karel {
         graphCurrentDirection = startDirection;
     }
 
-    public static void draw() {
+    public void draw() {
         Timer timer = new Timer(speed, new ActionListener() {
             private int counter;
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (toDraw.get(counter).equals("Move")) {
-                    drawMove();
-                } else if (toDraw.get(counter).equals("TurnRight")){
-                    drawTurnRight();
-                } else if (toDraw.get(counter).equals("PutBeeper")){
-                    drawPutBeeper();
-                } else if (toDraw.get(counter).equals("PickBeeper")){
-                    drawPickBeeper();
-                } else if (toDraw.get(counter).equals("NoBeeperError")){
-                    JOptionPane.showMessageDialog(f, "There is no Beeper Present Here");
+                switch (toDraw.get(counter)) {
+                    case "Move" -> drawMove();
+                    case "TurnRight" -> drawTurnRight();
+                    case "PutBeeper" -> drawPutBeeper();
+                    case "PickBeeper" -> drawPickBeeper();
+                    case "NoBeeperError" -> JOptionPane.showMessageDialog(f, "There is no Beeper Present Here");
                 }
                 f.panel.repaint();
                 counter++;
@@ -93,18 +86,18 @@ public class Karel {
 
     }
 
-    private static void drawPutBeeper() {
+    private void drawPutBeeper() {
         graphBeepers[graphPosX][graphPosY]++;
     }
-    private static void drawPickBeeper() {
+    private void drawPickBeeper() {
         graphBeepers[graphPosX][graphPosY]--;
     }
 
-    private static void drawTurnRight() {
+    private void drawTurnRight() {
         graphCurrentDirection = (graphCurrentDirection + 1)%4;
     }
 
-    private static void drawMove() {
+    private void drawMove() {
         if (graphCurrentDirection == 0) {
             graphPosX++;
         } else if (graphCurrentDirection == 1) {
@@ -116,7 +109,7 @@ public class Karel {
         }
     }
 
-    public static void move() {
+    public void move() {
         if (techCurrentDirection == 0) {
             techPosX++;
         } else if (techCurrentDirection == 1) {
@@ -129,12 +122,12 @@ public class Karel {
         toDraw.add("Move");
     }
 
-    public static void putBeeper(){
+    public void putBeeper(){
         techBeepers[techPosY][techPosX]++;
         toDraw.add("PutBeeper");
     }
 
-    public static void pickBeeper(){
+    public void pickBeeper(){
         if (beepersPresent()){
             techBeepers[techPosY][techPosX]--;
             toDraw.add("PickBeeper");
@@ -145,7 +138,7 @@ public class Karel {
 
     }
 
-    public static boolean beepersPresent() {
+    public boolean beepersPresent() {
         if (techBeepers[techPosY][techPosX]>0){
             return true;
         } else {
@@ -153,7 +146,7 @@ public class Karel {
         }
     }
 
-    public static void turnRight() {
+    public void turnRight() {
         techCurrentDirection = (techCurrentDirection + 1)%4;
         toDraw.add("TurnRight");
     }
