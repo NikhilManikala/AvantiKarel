@@ -4,18 +4,19 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class RunButton extends JButton {
-    ActionListener runPress = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            Karel.speed = KarelFrame.speedSlider.getValue();
-            Karel.toDraw = new ArrayList<String>();
-            karelTest.run();
-            Karel.draw();
-        }
+    Karel k;
+    static Constants constants = new Constants();
+
+    ActionListener runPress = e -> {
+        k.speed = k.f.speedSlider.getValue();
+        k.toDraw = new ArrayList<>();
+        karelTest.run();
+        k.draw();
     };
 
-    public RunButton(){
-        setBounds(2*Karel.paddingX+Karel.panelWidth, Karel.paddingY, 95, 30);
+    public RunButton(Karel parameterKarel){
+        k = parameterKarel;
+        setBounds(2*constants.paddingX+constants.panelWidth, constants.paddingY, 95, 30);
         setText("Run");
         addActionListener(runPress);
     }
