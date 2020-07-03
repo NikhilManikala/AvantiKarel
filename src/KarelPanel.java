@@ -10,14 +10,17 @@ public class KarelPanel extends JPanel {
     int rows;
     int columns;
 
-    public KarelPanel(int paraPaddingX, int paraPaddingY, int paraCellWidth, int paraCellHeight, int paraRows, int paraCols){
-        paddingX = paraPaddingX;
-        paddingY = paraPaddingY;
-        cellWidth = paraCellWidth;
-        cellHeight = paraCellHeight;
-        rows = paraRows;
-        columns = paraCols;
+    public KarelPanel(){
+        paddingX = Karel.paddingX;
+        paddingY = Karel.paddingY;
+        cellWidth = Karel.cellWidth;
+        cellHeight = Karel.cellHeight;
+        rows = Karel.rows;
+        columns = Karel.columns;
 
+
+        setBackground(Color.WHITE);
+        setBounds(paddingX, paddingY, Karel.panelWidth, Karel.panelHeight);
     }
 
     @Override
@@ -119,7 +122,6 @@ public class KarelPanel extends JPanel {
         for (int i = 0; i < (end-start+1); i++) {
             toReturn[i]=list[i+start];
         }
-//        System.out.println(Arrays.toString(toReturn));
         return toReturn;
     }
 }
