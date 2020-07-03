@@ -92,6 +92,8 @@ public class Karel {
         c.setBounds(2*paddingX + panelWidth, (int) (paddingY +(0.5*cellHeight)),95,30);
         c.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                techBeepers = new int[rows][columns];
+                graphBeepers = new int[rows][columns];
                 toDraw = new ArrayList<String>();
                 techPosX=startPosX;
                 techPosY=startPosY;
