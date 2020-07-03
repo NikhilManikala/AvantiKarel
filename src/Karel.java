@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import javax.swing.*;
 
 public class Karel {
@@ -12,12 +13,14 @@ public class Karel {
     private static final int cellWidth = 100;
     private static final int cellHeight = 100;
 
-    private static final int speed = 500;
+    private static int speed = 250;
 
 //    Technical Constants
     private static final int rows = 5;
     private static final int columns = 5;
-    private static final int delay = 500;
+    private static final int minDelay = 0;
+    private static final int maxDelay = 2000;
+
 
 
 //    Calculated Constants
@@ -45,17 +48,8 @@ public class Karel {
 
     private static KarelPanel panel;
 
-    public Karel() {
-        setupJFrame();
-        techPosX = startPosX;
-        techPosY = startPosY;
-        techCurrentDirection = startDirection;
-        graphPosX = startPosX;
-        graphPosY = startPosY;
-        graphCurrentDirection = startDirection;
-    }
 
-    private void setupJFrame() {
+    private static void setupJFrame() {
 
         JFrame f= new JFrame("Karel R");
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -69,21 +63,44 @@ public class Karel {
         f.add(panel);
         f.setSize(windowWidth, windowHeight);
 
+        JSlider speedSlider = new JSlider(-100, 100, 50);
+        speedSlider.setBounds(2*paddingX + panelWidth,paddingY+cellHeight,195,30);
 
+        Hashtable<Integer, JLabel> position = new Hashtable<Integer, JLabel>();
+        position.put(0, new JLabel("0"));
+        position.put(50, new JLabel("50"));
+        position.put(100, new JLabel("100"));
+        speedSlider.setLabelTable(position);
+
+        f.add(speedSlider);
+
+        JButton b=new JButton("Run");
+        b.setBounds(2*paddingX + panelWidth,paddingY,95,30);
+        b.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                speed = speedSlider.getValue();
+                karelTest.run();
+                draw();
+            }
+        });
+        f.add(b);
+        
+        
         f.setLayout(null);
         f.setVisible(true);
     }
 
     public static void main(String[] args) {
-        new Karel();
-        move();
-        move();
-        move();
-        turnRight();
-        run();
+        setupJFrame();
+        techPosX = startPosX;
+        techPosY = startPosY;
+        techCurrentDirection = startDirection;
+        graphPosX = startPosX;
+        graphPosY = startPosY;
+        graphCurrentDirection = startDirection;
     }
 
-    public static void run() {
+    public static void draw() {
         Timer timer = new Timer(speed, new ActionListener() {
             private int counter;
 
