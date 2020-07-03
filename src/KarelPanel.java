@@ -10,8 +10,7 @@ public class KarelPanel extends JPanel {
         k = parameterKarel;
 
         setBackground(Color.WHITE);
-        setBounds(constants.paddingX, constants.paddingY, constants.columns * constants.cellWidth,
-                constants.rows * constants.cellHeight);
+        setBounds(constants.paddingX, constants.paddingY, constants.panelWidth, constants.panelHeight);
     }
 
     @Override

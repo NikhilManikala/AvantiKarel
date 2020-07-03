@@ -10,13 +10,6 @@ public class Karel {
     protected int speed = 250;
     private int firstError;
 
-    //Calculated Constants
-//    protected final int panelWidth = columns*cellWidth;
-//    protected final int panelHeight = rows*cellHeight;
-//
-//    protected final int windowWidth = panelWidth + 10*paddingX;
-//    protected final int windowHeight = panelHeight + 3*paddingY;
-
     //Karel Current Position Initialisation
     protected static int techPosX;
     protected static int techPosY;
@@ -33,9 +26,8 @@ public class Karel {
     protected int[][] techBeepers = new int[constants.rows][constants.columns];
     protected int[][] graphBeepers = new int[constants.rows][constants.columns];
 
-
-    public static void main(String[] args) {
-        f = new KarelFrame();
+    public Karel() {
+        f = new KarelFrame(this);
         techPosX = constants.startPosX;
         techPosY = constants.startPosY;
         techCurrentDirection = constants.startDirection;
