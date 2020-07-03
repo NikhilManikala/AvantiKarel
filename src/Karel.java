@@ -22,11 +22,11 @@ public class Karel {
     private int firstError;
 
     //Calculated Constants
-    protected final int panelWidth = columns*cellWidth;
-    protected final int panelHeight = rows*cellHeight;
-
-    protected final int windowWidth = panelWidth + 10*paddingX;
-    protected final int windowHeight = panelHeight + 3*paddingY;
+//    protected final int panelWidth = columns*cellWidth;
+//    protected final int panelHeight = rows*cellHeight;
+//
+//    protected final int windowWidth = panelWidth + 10*paddingX;
+//    protected final int windowHeight = panelHeight + 3*paddingY;
 
     //Karel Starting Position
     protected static final int startPosX = 0;
@@ -42,7 +42,7 @@ public class Karel {
     protected static int graphPosY;
     protected static int graphCurrentDirection;
 
-    protected ArrayList<String> toDraw = new ArrayList<String>();
+    protected ArrayList<String> toDraw = new ArrayList<>();
 
     private KarelPanel panel;
     private static KarelFrame f;
@@ -61,7 +61,7 @@ public class Karel {
         graphCurrentDirection = startDirection;
     }
 
-    public void draw() {
+    protected void draw() {
         Timer timer = new Timer(speed, new ActionListener() {
             private int counter;
 
@@ -109,7 +109,7 @@ public class Karel {
         }
     }
 
-    public void move() {
+    protected void move() {
         if (techCurrentDirection == 0) {
             techPosX++;
         } else if (techCurrentDirection == 1) {
@@ -122,12 +122,12 @@ public class Karel {
         toDraw.add("Move");
     }
 
-    public void putBeeper(){
+    protected void putBeeper(){
         techBeepers[techPosY][techPosX]++;
         toDraw.add("PutBeeper");
     }
 
-    public void pickBeeper(){
+    protected void pickBeeper(){
         if (beepersPresent()){
             techBeepers[techPosY][techPosX]--;
             toDraw.add("PickBeeper");
@@ -138,7 +138,7 @@ public class Karel {
 
     }
 
-    public boolean beepersPresent() {
+    protected boolean beepersPresent() {
         if (techBeepers[techPosY][techPosX]>0){
             return true;
         } else {
@@ -146,7 +146,7 @@ public class Karel {
         }
     }
 
-    public void turnRight() {
+    protected void turnRight() {
         techCurrentDirection = (techCurrentDirection + 1)%4;
         toDraw.add("TurnRight");
     }
