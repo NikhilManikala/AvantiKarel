@@ -6,20 +6,20 @@ import java.util.Hashtable;
 import javax.swing.*;
 
 public class Karel {
+
 //    Graphical Constants
     protected  static final int paddingX = 40;
     protected  static final int paddingY = 40;
-
     protected  static final int cellWidth = 100;
     protected  static final int cellHeight = 100;
 
-    protected static int speed = 250;
 
-//    Technical Constants
+    //    Technical Constants
     protected  static final int rows = 5;
     protected  static final int columns = 5;
     protected static final int minDelay = 0;
     protected static final int maxDelay = 500;
+    protected static int speed = 250;
 
     private static int firstError;
 
@@ -27,8 +27,8 @@ public class Karel {
     protected static final int panelWidth = columns*cellWidth;
     protected static final int panelHeight = rows*cellHeight;
 
-    private static final int windowWidth = panelWidth + 10*paddingX;
-    private static final int windowHeight = panelHeight + 3*paddingY;
+    protected static final int windowWidth = panelWidth + 10*paddingX;
+    protected static final int windowHeight = panelHeight + 3*paddingY;
 
     //Karel Starting Position
     protected static final int startPosX = 0;
@@ -52,22 +52,9 @@ public class Karel {
     protected static int[][] techBeepers = new int[rows][columns];
     protected static int[][] graphBeepers = new int[rows][columns];
 
-    private static void setupJFrame() {
-
-        KarelFrame f = new KarelFrame();
-
-        f.setSize(windowWidth, windowHeight);
-
-        JSlider speedSlider = new JSlider(minDelay, maxDelay, speed);
-
-        f.setLayout(null);
-        f.setVisible(true);
-    }
-
-
 
     public static void main(String[] args) {
-        setupJFrame();
+        KarelFrame f = new KarelFrame();
         techPosX = startPosX;
         techPosY = startPosY;
         techCurrentDirection = startDirection;

@@ -26,6 +26,7 @@ public class KarelFrame extends JFrame {
         add(speedSlider);
 
 //      Setup
+        setSize(Karel.windowWidth, Karel.windowHeight);
         setLayout(null);
         setVisible(true);
     }
