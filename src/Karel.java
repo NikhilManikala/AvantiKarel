@@ -1,4 +1,7 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
 
 public class Karel {
@@ -9,6 +12,7 @@ public class Karel {
     private static final int cellWidth = 100;
     private static final int cellHeight = 100;
 
+    private static final int speed = 500;
 
 //    Technical Constants
     private static final int rows = 5;
@@ -26,20 +30,29 @@ public class Karel {
     //Karel Starting Position
     private static final int startPosX = 0;
     private static final int startPosY = 0;
-    private static final int startDirection = 3;
+    private static final int startDirection = 0;
 
     //Karel Current Position Initialisation
-    protected static int posX;
-    protected static int posY;
-    protected static int currentDirection;
+    protected static int techPosX;
+    protected static int techPosY;
+    protected static int techCurrentDirection;
+
+    protected static int graphPosX;
+    protected static int graphPosY;
+    protected static int graphCurrentDirection;
+
+    protected static ArrayList<String> toDraw = new ArrayList<String>();
 
     private static KarelPanel panel;
 
     public Karel() {
         setupJFrame();
-        posX = startPosX;
-        posY = startPosY;
-        currentDirection = startDirection;
+        techPosX = startPosX;
+        techPosY = startPosY;
+        techCurrentDirection = startDirection;
+        graphPosX = startPosX;
+        graphPosY = startPosY;
+        graphCurrentDirection = startDirection;
     }
 
     private void setupJFrame() {
@@ -63,31 +76,70 @@ public class Karel {
 
     public static void main(String[] args) {
         new Karel();
+        move();
+        move();
+        move();
+        turnRight();
+        run();
+    }
+
+    public static void run() {
+        Timer timer = new Timer(speed, new ActionListener() {
+            private int counter;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (toDraw.get(counter).equals("Move")) {
+                    drawMove();
+                } else if (toDraw.get(counter).equals("TurnRight")){
+                    drawTurnRight();
+                }
+                panel.repaint();
+                counter++;
+
+                if (counter == toDraw.size()) {
+                    ((Timer)e.getSource()).stop();
+                }
+            }
+        });
+        timer.start();
+
+    }
+
+    private static void drawTurnRight() {
+        graphCurrentDirection = (graphCurrentDirection + 1)%4;
+    }
+
+    private static void drawMove() {
+        if (graphCurrentDirection == 0) {
+            graphPosX++;
+        } else if (graphCurrentDirection == 1) {
+            graphPosY++;
+        } else if(graphCurrentDirection == 2) {
+            graphPosX--;
+        } else if (graphCurrentDirection == 3) {
+            graphPosY--;
+        }
     }
 
     public static void move() {
-        Timer timer = new Timer(delay, e -> {
-            if (currentDirection == 0) {
-                posX++;
-            } else if (currentDirection == 1) {
-                posY++;
-            } else if(currentDirection == 2) {
-                posX--;
-            } else if (currentDirection == 3) {
-                posY--;
-            }
-            panel.repaint();
-        });
-        timer.setRepeats(false);
-        timer.start();
+//        System.out.println("Move");
+        if (techCurrentDirection == 0) {
+            techPosX++;
+        } else if (techCurrentDirection == 1) {
+            techPosY++;
+        } else if(techCurrentDirection == 2) {
+            techPosX--;
+        } else if (techCurrentDirection == 3) {
+            techPosY--;
+        }
+        toDraw.add("Move");
     }
 
     public static void turnRight() {
-        Timer timer = new Timer(delay, e -> {
-            currentDirection = (currentDirection + 1)%4;
-            panel.repaint();
-        });
-        timer.setRepeats(false);
-        timer.start();
+        techCurrentDirection = (techCurrentDirection + 1)%4;
+        toDraw.add("TurnRight");
+//        System.out.println(toDraw);
     }
+
 }

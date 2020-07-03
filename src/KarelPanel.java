@@ -25,7 +25,7 @@ public class KarelPanel extends JPanel {
         super.paint(g);
         drawGrid(g);
         drawBeeper(g, 2, 3,cellWidth, cellHeight, 3);
-        drawKarel(g, Karel.posX, Karel.posY, Karel.currentDirection, cellWidth, cellHeight);
+        drawKarel(g, Karel.graphPosX, Karel.graphPosY, Karel.graphCurrentDirection, cellWidth, cellHeight);
     }
 
     private void drawGrid(Graphics g) {
