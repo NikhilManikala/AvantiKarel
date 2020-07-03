@@ -5,20 +5,9 @@ import javax.swing.*;
 
 public class Karel {
 
-    //Graphical Constants
-    protected final int paddingX = 40;
-    protected final int paddingY = 40;
-    protected final int cellWidth = 100;
-    protected final int cellHeight = 100;
+    static Constants constants = new Constants();
 
-
-    //Technical Constants
-    protected final int rows = 5;
-    protected final int columns = 5;
-    protected final int minDelay = 0;
-    protected final int maxDelay = 500;
     protected int speed = 250;
-
     private int firstError;
 
     //Calculated Constants
@@ -27,11 +16,6 @@ public class Karel {
 //
 //    protected final int windowWidth = panelWidth + 10*paddingX;
 //    protected final int windowHeight = panelHeight + 3*paddingY;
-
-    //Karel Starting Position
-    protected static final int startPosX = 0;
-    protected static final int startPosY = 0;
-    protected static final int startDirection = 0;
 
     //Karel Current Position Initialisation
     protected static int techPosX;
@@ -44,21 +28,20 @@ public class Karel {
 
     protected ArrayList<String> toDraw = new ArrayList<>();
 
-    private KarelPanel panel;
     private static KarelFrame f;
 
-    protected int[][] techBeepers = new int[rows][columns];
-    protected int[][] graphBeepers = new int[rows][columns];
+    protected int[][] techBeepers = new int[constants.rows][constants.columns];
+    protected int[][] graphBeepers = new int[constants.rows][constants.columns];
 
 
     public static void main(String[] args) {
         f = new KarelFrame();
-        techPosX = startPosX;
-        techPosY = startPosY;
-        techCurrentDirection = startDirection;
-        graphPosX = startPosX;
-        graphPosY = startPosY;
-        graphCurrentDirection = startDirection;
+        techPosX = constants.startPosX;
+        techPosY = constants.startPosY;
+        techCurrentDirection = constants.startDirection;
+        graphPosX = constants.startPosX;
+        graphPosY = constants.startPosY;
+        graphCurrentDirection = constants.startDirection;
     }
 
     protected void draw() {
