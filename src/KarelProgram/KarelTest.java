@@ -3,7 +3,7 @@ package KarelProgram;
 public class KarelTest extends Karel{
 
     public static void main(String[] args) {
-        world = "NewspaperWorld";
+//        world = "NewspaperWorld";
         new KarelTest();
     }
 
