@@ -44,7 +44,7 @@ public abstract class Karel {
             public void actionPerformed(ActionEvent e) {
                 switch (toDraw.get(counter)) {
                     case "Move" -> drawMove();
-                    case "TurnRight" -> drawTurnRight();
+                    case "TurnLeft" -> drawTurnLeft();
                     case "PutBeeper" -> drawPutBeeper();
                     case "PickBeeper" -> drawPickBeeper();
                     case "NoBeeperError" -> JOptionPane.showMessageDialog(f, "There is no Beeper Present Here");
@@ -68,25 +68,25 @@ public abstract class Karel {
         graphBeepers[graphPosX][graphPosY]--;
     }
 
-    private void drawTurnRight() {
+    private void drawTurnLeft() {
         graphCurrentDirection = (graphCurrentDirection + 1)%4;
     }
 
     private void drawMove() {
         switch (graphCurrentDirection) {
             case 0 -> graphPosX++;
-            case 1 -> graphPosY++;
+            case 1 -> graphPosY--;
             case 2 -> graphPosX--;
-            case 3 -> graphPosY--;
+            case 3 -> graphPosY++;
         }
     }
 
     protected void move() {
         switch (techCurrentDirection) {
             case 0 -> techPosX++;
-            case 1 -> techPosY++;
+            case 1 -> techPosY--;
             case 2 -> techPosX--;
-            case 3 -> techPosY--;
+            case 3 -> techPosY++;
         }
         toDraw.add("Move");
     }
@@ -111,9 +111,9 @@ public abstract class Karel {
         return techBeepers[techPosY][techPosX] > 0;
     }
 
-    protected void turnRight() {
+    protected void turnLeft() {
         techCurrentDirection = (techCurrentDirection + 1)%4;
-        toDraw.add("TurnRight");
+        toDraw.add("TurnLeft");
     }
 
     protected abstract void run();

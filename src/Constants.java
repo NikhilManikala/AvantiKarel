@@ -1,7 +1,7 @@
 public class Constants {
 
     //Technical Constants
-    protected final int rows = 7;
+    protected final int rows = 5;
     protected final int columns = 7;
     protected final int minSpeed = 0;
     protected final int maxSpeed = 500;
@@ -18,7 +18,7 @@ public class Constants {
     protected final int paddingMultiplierY = 3;
 
     //Karel Starting Position
-    protected final int startPosX = 0;
-    protected final int startPosY = 0;
+    protected final int startPosX = 3;
+    protected final int startPosY = 3;
     protected final int startDirection = 0;
 }

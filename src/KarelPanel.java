@@ -35,9 +35,9 @@ public class KarelPanel extends JPanel {
     private void drawGrid(Graphics g) {
         int rad = 2;
         for (int row = 0; row < constants.rows; row++) {
-            int centerX = (int) ((row+0.5) * constants.cellWidth);
+            int centerY = (int) ((row+0.5) * constants.cellHeight);
             for (int col = 0; col < constants.columns; col++) {
-                int centerY = (int) ((col+0.5) * constants.cellHeight);
+                int centerX = (int) ((col+0.5) * constants.cellWidth);
                 g.fillOval(centerX-rad, centerY-rad, 2*rad, 2*rad);
             }
         }
@@ -71,17 +71,17 @@ public class KarelPanel extends JPanel {
             for (int i = 0; i < dir; i++) {
                 double tempX = workingX;
                 double tempY = workingY;
-                workingX = (-1)*tempY;
-                workingY = tempX;
+                workingX = (1)*tempY;
+                workingY = (-1)*tempX;
             }
 
             if (dir == 1) {
-                workingX ++;
+                workingY++;
             } else if (dir == 2) {
-                workingX ++;
-                workingY ++;
+                workingX++;
+                workingY++;
             } else if (dir == 3) {
-                workingY ++;
+                workingX++;
             }
 
             xShiftList[id] = workingX;
@@ -106,9 +106,7 @@ public class KarelPanel extends JPanel {
 
     private static int[] splice(int[] list, int start, int end){
         int[] toReturn = new int[end-start+1];
-        for (int i = 0; i < (end-start+1); i++) {
-            toReturn[i]=list[i+start];
-        }
+        if (end - start + 1 >= 0) System.arraycopy(list, start, toReturn, 0, end - start + 1);
         return toReturn;
     }
 }

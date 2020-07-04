@@ -4,20 +4,12 @@ public class KarelTest extends Karel{
     }
 
     public void run(){
-        putBeeper();
-        move();
-        turnRight();
-        move();
         turnLeft();
-        putBeeper();
-        putBeeper();
-        pickBeeper();
-        move();
     }
 
-    private void turnLeft() {
+    private void turnRight() {
         for (int i = 0; i < 3; i++) {
-            turnRight();
+            this.turnLeft();
         }
     }
 }
