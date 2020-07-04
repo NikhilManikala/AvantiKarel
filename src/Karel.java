@@ -24,12 +24,15 @@ public abstract class Karel {
 
     protected KarelFrame f;
 
-    protected int[][] techBeepers = constants.initialBeepers;
-    protected int[][] graphBeepers = constants.initialBeepers;
+    protected int[][] techBeepers = new int[constants.rows][constants.columns];
+
+    protected int[][] graphBeepers = new int[constants.rows][constants.columns];
 
 
     public Karel() {
         f = new KarelFrame(this);
+        techBeepers = constants.addBeepers(techBeepers);
+        graphBeepers = constants.addBeepers(graphBeepers);
         techPosX = constants.startPosX;
         techPosY = constants.startPosY;
         techCurrentDirection = constants.startDirection;

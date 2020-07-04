@@ -10,8 +10,12 @@ public class ResetButton extends JButton {
     ActionListener runPress = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            k.techBeepers = constants.initialBeepers;
-            k.graphBeepers = constants.initialBeepers;
+            k.techBeepers = new int[constants.rows][constants.columns];
+            k.graphBeepers = new int[constants.rows][constants.columns];
+
+            k.techBeepers = constants.addBeepers(k.techBeepers);
+            k.graphBeepers = constants.addBeepers(k.graphBeepers);
+
             k.toDraw = new ArrayList<>();
             k.techPosX = constants.startPosX;
             k.techPosY = constants.startPosY;

@@ -89,9 +89,10 @@ public class KarelPanel extends JPanel {
 
         g.setColor(Color.lightGray);
         g.fillPolygon(new int[]{x1, x2, x3, x4}, new int[]{y1, y2, y3, y4}, 4);
-
-        g.setColor(Color.black);
-        g.drawString(Integer.toString(number), x1, y2);
+        if (number>1){
+            g.setColor(Color.black);
+            g.drawString(Integer.toString(number), x1, y2);
+        }
     }
 
     private void drawKarel(Graphics g, int x, int y, int dir, int cellWidth, int cellHeight){
