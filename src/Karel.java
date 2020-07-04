@@ -81,7 +81,7 @@ public abstract class Karel {
         System.out.println(Arrays.deepToString(graphBeepers));
     }
     private void drawPickBeeper() {
-        graphBeepers[graphPosX][graphPosY]--;
+        graphBeepers[graphPosY][graphPosX]--;
     }
 
     private void drawTurnLeft() {
