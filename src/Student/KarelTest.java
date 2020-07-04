@@ -1,6 +1,8 @@
-package KarelProgram;
+package Student;
 
-public class KarelTest extends SuperKarel{
+import KarelProgram.SuperKarel;
+
+public class KarelTest extends SuperKarel {
 
     public static void main(String[] args) {
         world = "NewspaperWorld";
