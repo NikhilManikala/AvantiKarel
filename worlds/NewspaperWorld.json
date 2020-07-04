@@ -1,0 +1,29 @@
+{
+  "rows": 5,
+  "columns": 7,
+
+  "paddingX": 40,
+  "paddingY": 40,
+  "cellWidth": 100,
+  "cellHeight": 100,
+
+  "startPosX": 2,
+  "startPosY": 1,
+  "startDirection": 0,
+
+  "horizontalWalls": [[true, true, true, true, true, true, true],
+                      [false, false, false, false, false, false, false],
+                      [false, false, false, false, false, false, false],
+                      [false, false, false, false, false, false, false],
+                      [false, false, false, false, false, false, false],
+                      [true, true, true, true, true, true, true]
+  ],
+
+  "verticalWalls": [[true, false, false, false, false, false, false, true],
+                    [true, false, false, false, false, false, false, true],
+                    [true, false, false, false, false, false, false, true],
+                    [true, false, false, false, false, false, false, true],
+                    [true, false, false, false, false, false, false, true]
+
+  ]
+}

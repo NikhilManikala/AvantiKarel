@@ -32,26 +32,7 @@ public class Constants {
     protected final boolean[][] verticalWalls = new boolean[rows][columns+1];
 
     public Constants(){
-        for (int row = 0; row < horizontalWalls.length; row++) {
-            Arrays.fill(horizontalWalls[row], row == 0 || row == rows);
 
-        }
-        for (int row = 0; row < verticalWalls.length; row++) {
-            for (int col = 0; col < verticalWalls[row].length; col++) {
-                if (col == 0 || col == columns){
-                    verticalWalls[row][col]=true;
-                }
-            }
-        }
-        for (int i = 1; i < 4; i++) {
-            verticalWalls[i][2]=true;
-        }
-        for (int i = 2; i < 5; i++) {
-            horizontalWalls[1][i]=true;
-            horizontalWalls[4][i]=true;
-        }
-        verticalWalls[1][5]=true;
-        verticalWalls[3][5]=true;
     }
 
     public int[][] addBeepers(int[][] beeperList){
