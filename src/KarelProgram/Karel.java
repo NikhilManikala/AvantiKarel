@@ -60,6 +60,8 @@ public abstract class Karel {
                         case "TurnLeft" -> drawTurnLeft();
                         case "PutBeeper" -> drawPutBeeper();
                         case "PickBeeper" -> drawPickBeeper();
+                        case "TurnRight" -> drawTurnRight();
+                        case "TurnAround" -> drawTurnAround();
                         case "NoBeeperError" -> {
                             JOptionPane.showMessageDialog(f, "There is no Beeper Present Here");
                             ((Timer)e.getSource()).stop();
@@ -79,6 +81,14 @@ public abstract class Karel {
         });
         timer.start();
 
+    }
+
+    protected void drawTurnAround() {
+        graphCurrentDirection = (graphCurrentDirection + 2)%4;
+    }
+
+    protected void drawTurnRight() {
+        graphCurrentDirection = (graphCurrentDirection + 3)%4;
     }
 
     private void drawPutBeeper() {

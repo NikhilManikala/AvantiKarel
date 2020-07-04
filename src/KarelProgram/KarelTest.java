@@ -1,9 +1,9 @@
 package KarelProgram;
 
-public class KarelTest extends Karel{
+public class KarelTest extends SuperKarel{
 
     public static void main(String[] args) {
-//        world = "NewspaperWorld";
+        world = "NewspaperWorld";
         new KarelTest();
     }
 
@@ -58,18 +58,6 @@ public class KarelTest extends Karel{
             move();
         }
         turnAround();
-    }
-
-    private void turnRight(){
-        for (int i = 0; i < 3; i++) {
-            turnLeft();
-        }
-    }
-    private void turnAround(){
-        for (int i = 0; i < 2; i++) {
-            turnLeft();
-
-        }
     }
 
 }

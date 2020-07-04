@@ -21,7 +21,7 @@ public class KarelFrame extends JFrame {
 
 //      Setup Graphical Data
         setBackground(Color.lightGray);
-
+        setTitle("Karel's World");
 //      Add Karel Panel to Window
         add(panel);
 
