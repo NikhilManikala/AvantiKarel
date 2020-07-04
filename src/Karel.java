@@ -134,7 +134,7 @@ public abstract class Karel {
         return techBeepers[techPosY][techPosX] > 0;
     }
 
-    protected boolean noBeepersPresenet() {
+    protected boolean noBeepersPresent() {
         return !beepersPresent();
     }
 
