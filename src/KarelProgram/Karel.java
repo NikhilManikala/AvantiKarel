@@ -11,7 +11,6 @@ public abstract class Karel {
     Constants constants = new Constants();
 
     protected int speed = 250;
-    private int firstError;
 
     //Karel Current Position Initialisation
     protected int techPosX;

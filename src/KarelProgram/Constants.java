@@ -1,8 +1,5 @@
 package KarelProgram;
 
-import java.util.Arrays;
-
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -16,29 +13,29 @@ public class Constants {
     //Technical Constants
     protected int rows;
     protected int columns;
-    protected final int minSpeed = 0;
-    protected final int maxSpeed = 500;
-    protected final int defaultSpeed = 250;
+    protected int minSpeed;
+    protected int maxSpeed;
+    protected int defaultSpeed;
 
     //Graphical Constants
     protected int paddingX;
     protected int paddingY;
     protected int cellWidth;
     protected int cellHeight;
-    protected final int panelWidth = cellWidth * columns;
-    protected final int panelHeight = cellHeight * rows;
-    protected final int paddingMultiplierX = 10;
-    protected final int paddingMultiplierY = 3;
+    protected int panelWidth;
+    protected int panelHeight;
+    protected int paddingMultiplierX;
+    protected int paddingMultiplierY;
 
-    protected final int wallThickness = 2;
+    protected int wallThickness;
 
     //Karel Starting Position
     protected int startPosX;
     protected int startPosY;
     protected int startDirection;
 
-    protected final boolean[][] horizontalWalls = new boolean[rows+1][columns];
-    protected final boolean[][] verticalWalls = new boolean[rows][columns+1];
+    protected boolean[][] horizontalWalls;
+    protected boolean[][] verticalWalls;
 
     public Constants(){
         JSONParser jsonParser = new JSONParser();
@@ -54,6 +51,9 @@ public class Constants {
             System.out.println(rows);
             columns = (int)(long) jObj.get("columns");
             System.out.println(columns);
+            minSpeed = 0;
+            maxSpeed = 500;
+            defaultSpeed = 250;
 
             paddingX = (int)(long) jObj.get("paddingX");
             System.out.println(paddingX);
@@ -63,16 +63,38 @@ public class Constants {
             System.out.println(cellWidth);
             cellHeight = (int)(long) jObj.get("cellHeight");
             System.out.println(cellHeight);
+            panelWidth = cellWidth * columns;
+            panelHeight = cellHeight * rows;
+            paddingMultiplierX = 10;
+            paddingMultiplierY = 3;
+
+            wallThickness = 2;
 
             startPosX = (int)(long) jObj.get("startPosX");
             startPosY = (int)(long) jObj.get("startPosY");
             startDirection = (int)(long) jObj.get("startDirection");
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+            horizontalWalls = new boolean[rows+1][columns];
+            verticalWalls = new boolean[rows][columns+1];
+
+            JSONArray jsonVertWalls = (JSONArray) jObj.get("verticalWalls");
+            JSONArray jsonHorWalls = (JSONArray) jObj.get("horizontalWalls");
+
+            for (int row = 0; row < jsonVertWalls.size(); row++) {
+                JSONArray eachRow = (JSONArray) jsonVertWalls.get(row);
+                for (int col = 0; col < eachRow.size(); col++) {
+                    verticalWalls[row][col] = (boolean) eachRow.get(col);
+                }
+            }
+
+            for (int row = 0; row < jsonHorWalls.size(); row++) {
+                JSONArray eachRow = (JSONArray) jsonHorWalls.get(row);
+                for (int col = 0; col < eachRow.size(); col++) {
+                    horizontalWalls[row][col] = (boolean) eachRow.get(col);
+                }
+            }
+
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
     }
