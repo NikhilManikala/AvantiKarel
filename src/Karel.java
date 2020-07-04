@@ -73,7 +73,9 @@ public abstract class Karel {
 
     private void drawPutBeeper() {
         System.out.println("drawing");
-        graphBeepers[graphPosX][graphPosY]++;
+        System.out.println(Arrays.deepToString(graphBeepers));
+        graphBeepers[graphPosY][graphPosX]++;
+        System.out.println(Arrays.deepToString(graphBeepers));
     }
     private void drawPickBeeper() {
         graphBeepers[graphPosX][graphPosY]--;
@@ -107,6 +109,8 @@ public abstract class Karel {
     }
 
     protected void putBeeper(){
+        System.out.println(techPosY);
+        System.out.println(techPosX);
         System.out.println("running put beeper");
         techBeepers[techPosY][techPosX]++;
         System.out.println(Arrays.deepToString(techBeepers));

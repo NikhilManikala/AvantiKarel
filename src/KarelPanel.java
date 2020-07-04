@@ -59,7 +59,7 @@ public class KarelPanel extends JPanel {
             for (int col = 0; col < k.graphBeepers[row].length; col++) {
                 if (k.graphBeepers[row][col]>0){
 //                    System.out.println(k.graphBeepers[row][col]);
-                    drawBeeper(g, row, col, constants.cellWidth, constants.cellHeight, k.graphBeepers[row][col]);
+                    drawBeeper(g, col, row, constants.cellWidth, constants.cellHeight, k.graphBeepers[row][col]);
                 }
             }
         }
