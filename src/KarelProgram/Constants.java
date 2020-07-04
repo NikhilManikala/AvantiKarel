@@ -1,3 +1,5 @@
+package KarelProgram;
+
 import java.util.Arrays;
 
 public class Constants {

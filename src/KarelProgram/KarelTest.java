@@ -1,3 +1,5 @@
+package KarelProgram;
+
 public class KarelTest extends Karel{
     public static void main(String[] args) {
         new KarelTest();
@@ -10,7 +12,7 @@ public class KarelTest extends Karel{
     }
 
     /**
-     * Moves Karel to the newspaper
+     * Moves KarelProgram.Karel to the newspaper
      * Move forward until he reaches the door
      * Turn right move forward one space
      * Turn left to face doorway
@@ -26,7 +28,7 @@ public class KarelTest extends Karel{
     }
 
     /**
-     * Moves Karel forward to pickup the beeper
+     * Moves KarelProgram.Karel forward to pickup the beeper
      */
     private void pickupNewspaper(){
         move();
@@ -34,13 +36,13 @@ public class KarelTest extends Karel{
     }
 
     /**
-     * Turns Karel back around
-     * Moves Karel into the doorway
-     * Turns Karel to the right to face the wall
-     * Moves Karel until he hits the wall
+     * Turns KarelProgram.Karel back around
+     * Moves KarelProgram.Karel into the doorway
+     * Turns KarelProgram.Karel to the right to face the wall
+     * Moves KarelProgram.Karel until he hits the wall
      * Turns left
-     * Moves Karel until he reaches his starting point
-     * Turns Karel around to face his starting location
+     * Moves KarelProgram.Karel until he reaches his starting point
+     * Turns KarelProgram.Karel around to face his starting location
      */
     private void returnHome(){
         turnAround();

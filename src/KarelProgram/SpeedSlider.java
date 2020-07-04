@@ -1,3 +1,5 @@
+package KarelProgram;
+
 import javax.swing.*;
 
 public class SpeedSlider extends JSlider {

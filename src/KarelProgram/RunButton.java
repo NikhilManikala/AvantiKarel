@@ -1,3 +1,5 @@
+package KarelProgram;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,7 +8,6 @@ import java.util.ArrayList;
 public class RunButton extends JButton {
     Karel k;
     static Constants constants = new Constants();
-//    karelTest F = new karelTest();
 
     ActionListener runPress = new ActionListener() {
         @Override
