@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 public class KarelPanel extends JPanel {
 
@@ -53,9 +54,11 @@ public class KarelPanel extends JPanel {
     }
 
     private void drawAllBeepers(Graphics g) {
+//        System.out.println(Arrays.deepToString(k.techBeepers));
         for (int row = 0; row < k.graphBeepers.length; row++) {
             for (int col = 0; col < k.graphBeepers[row].length; col++) {
                 if (k.graphBeepers[row][col]>0){
+//                    System.out.println(k.graphBeepers[row][col]);
                     drawBeeper(g, row, col, constants.cellWidth, constants.cellHeight, k.graphBeepers[row][col]);
                 }
             }
@@ -74,6 +77,7 @@ public class KarelPanel extends JPanel {
     }
 
     private void drawBeeper(Graphics g, int x, int y, int cellWidth, int cellHeight, int number){
+//        System.out.println("Drawing Beeper");
         int x1 = (int) ((x + 0.5) * cellWidth);
         int x2 = ((x + 1) * cellWidth);
         int x3 = (int) ((x + 0.5) * cellWidth);

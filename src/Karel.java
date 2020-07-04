@@ -24,8 +24,8 @@ public abstract class Karel {
 
     protected KarelFrame f;
 
-    protected int[][] techBeepers = new int[constants.rows][constants.columns];
-    protected int[][] graphBeepers = new int[constants.rows][constants.columns];
+    protected int[][] techBeepers = constants.initialBeepers;
+    protected int[][] graphBeepers = constants.initialBeepers;
 
 
     public Karel() {
@@ -72,6 +72,7 @@ public abstract class Karel {
     }
 
     private void drawPutBeeper() {
+        System.out.println("drawing");
         graphBeepers[graphPosX][graphPosY]++;
     }
     private void drawPickBeeper() {
@@ -106,7 +107,9 @@ public abstract class Karel {
     }
 
     protected void putBeeper(){
+        System.out.println("running put beeper");
         techBeepers[techPosY][techPosX]++;
+        System.out.println(Arrays.deepToString(techBeepers));
         toDraw.add("PutBeeper");
     }
 

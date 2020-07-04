@@ -22,12 +22,13 @@ public class Constants {
     protected final int wallThickness = 2;
 
     //Karel Starting Position
-    protected final int startPosX = 0;
-    protected final int startPosY = 0;
+    protected final int startPosX = 2;
+    protected final int startPosY = 1;
     protected final int startDirection = 3;
 
     protected final boolean[][] horizontalWalls = new boolean[rows+1][columns];
     protected final boolean[][] verticalWalls = new boolean[rows][columns+1];
+    protected final int[][] initialBeepers = new int[rows][columns];
 
     public Constants(){
         for (int row = 0; row < horizontalWalls.length; row++) {
@@ -41,7 +42,16 @@ public class Constants {
                 }
             }
         }
-
+        for (int i = 1; i < 4; i++) {
+            verticalWalls[i][2]=true;
+        }
+        for (int i = 2; i < 5; i++) {
+            horizontalWalls[1][i]=true;
+            horizontalWalls[4][i]=true;
+        }
+        verticalWalls[1][5]=true;
+        verticalWalls[3][5]=true;
+//        initialBeepers[3][5]=5;
     }
 
 }
