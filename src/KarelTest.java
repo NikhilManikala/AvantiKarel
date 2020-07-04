@@ -4,7 +4,14 @@ public class KarelTest extends Karel{
     }
 
     public void run(){
-        turnLeft();
+        move();
+        move();
+        move();
+        move();
+        move();
+        pickBeeper();
+        move();
+        move();
     }
 
     private void turnRight() {

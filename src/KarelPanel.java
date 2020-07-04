@@ -20,6 +20,36 @@ public class KarelPanel extends JPanel {
         drawAllBeepers(g);
         drawKarel(g, k.graphPosX, k.graphPosY, k.graphCurrentDirection,
                 constants.cellWidth, constants.cellHeight);
+        drawAllVerticalWalls(g);
+        drawAllHorizontalWalls(g);
+    }
+
+    private void drawAllVerticalWalls(Graphics g) {
+        for (int row = 0; row < constants.verticalWalls.length; row++) {
+            for (int col = 0; col < constants.verticalWalls[row].length; col++) {
+                if (constants.verticalWalls[row][col]){
+                    drawVerticalWall(g, col, row);
+                }
+            }
+        }
+    }
+    private void drawAllHorizontalWalls(Graphics g) {
+        for (int row = 0; row < constants.horizontalWalls.length; row++) {
+            for (int col = 0; col < constants.horizontalWalls[row].length; col++) {
+                if (constants.horizontalWalls[row][col]){
+                    drawHorizontalWall(g, col, row);
+                }
+            }
+        }
+    }
+
+    private void drawHorizontalWall(Graphics g, int x, int y){
+        g.fillRect(x*constants.cellWidth, y*constants.cellHeight-constants.wallThickness,
+                constants.cellWidth, 2*constants.wallThickness);
+    }
+    private void drawVerticalWall(Graphics g, int x, int y){
+        g.fillRect(x*constants.cellWidth-constants.wallThickness, y*constants.cellHeight,
+                2*constants.wallThickness, constants.cellHeight);
     }
 
     private void drawAllBeepers(Graphics g) {

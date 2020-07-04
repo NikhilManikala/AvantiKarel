@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Constants {
 
     //Technical Constants
@@ -17,8 +19,29 @@ public class Constants {
     protected final int paddingMultiplierX = 10;
     protected final int paddingMultiplierY = 3;
 
+    protected final int wallThickness = 2;
+
     //Karel Starting Position
-    protected final int startPosX = 3;
-    protected final int startPosY = 3;
-    protected final int startDirection = 0;
+    protected final int startPosX = 0;
+    protected final int startPosY = 0;
+    protected final int startDirection = 3;
+
+    protected final boolean[][] horizontalWalls = new boolean[rows+1][columns];
+    protected final boolean[][] verticalWalls = new boolean[rows][columns+1];
+
+    public Constants(){
+        for (int row = 0; row < horizontalWalls.length; row++) {
+            Arrays.fill(horizontalWalls[row], row == 0 || row == rows);
+
+        }
+        for (int row = 0; row < verticalWalls.length; row++) {
+            for (int col = 0; col < verticalWalls[row].length; col++) {
+                if (col == 0 || col == columns){
+                    verticalWalls[row][col]=true;
+                }
+            }
+        }
+
+    }
+
 }
