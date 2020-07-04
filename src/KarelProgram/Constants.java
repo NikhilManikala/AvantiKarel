@@ -33,14 +33,15 @@ public class Constants {
     protected int startPosX;
     protected int startPosY;
     protected int startDirection;
+    protected int[][] startingBeepers;
 
     protected boolean[][] horizontalWalls;
     protected boolean[][] verticalWalls;
 
-    public Constants(){
+    public Constants(String world){
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader("worlds/NewspaperWorld.json"))
+        try (FileReader reader = new FileReader("worlds/" + world + ".json"))
         {
             //Read JSON file
             Object obj = jsonParser.parse(reader);
@@ -76,9 +77,11 @@ public class Constants {
 
             horizontalWalls = new boolean[rows+1][columns];
             verticalWalls = new boolean[rows][columns+1];
+            startingBeepers = new int[rows][columns];
 
             JSONArray jsonVertWalls = (JSONArray) jObj.get("verticalWalls");
             JSONArray jsonHorWalls = (JSONArray) jObj.get("horizontalWalls");
+            JSONArray jsonBeepers = (JSONArray) jObj.get("beepers");
 
             for (int row = 0; row < jsonVertWalls.size(); row++) {
                 JSONArray eachRow = (JSONArray) jsonVertWalls.get(row);
@@ -94,14 +97,24 @@ public class Constants {
                 }
             }
 
+            for (int row = 0; row < jsonBeepers.size(); row++) {
+                JSONArray eachRow = (JSONArray) jsonBeepers.get(row);
+                for (int col = 0; col < eachRow.size(); col++) {
+                    startingBeepers[row][col] = (int) (long) eachRow.get(col);
+                }
+            }
+
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
     }
 
-    public int[][] addBeepers(int[][] beeperList){
-        beeperList[2][5]=1;
-        return beeperList;
+    public int[][] addBeepers(){
+        int[][] toReturn = new int[rows][columns];
+        for (int row = 0; row < startingBeepers.length; row++) {
+            System.arraycopy(startingBeepers[row], 0, toReturn[row], 0, startingBeepers[row].length);
+        }
+        return toReturn;
     }
 
 }

@@ -14,8 +14,8 @@ public class ResetButton extends JButton {
             k.techBeepers = new int[k.constants.rows][k.constants.columns];
             k.graphBeepers = new int[k.constants.rows][k.constants.columns];
 
-            k.techBeepers = k.constants.addBeepers(k.techBeepers);
-            k.graphBeepers = k.constants.addBeepers(k.graphBeepers);
+            k.techBeepers = k.constants.addBeepers();
+            k.graphBeepers = k.constants.addBeepers();
 
             k.toDraw = new ArrayList<>();
             k.techPosX = k.constants.startPosX;

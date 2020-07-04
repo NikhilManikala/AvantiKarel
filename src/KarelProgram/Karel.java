@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public abstract class Karel {
 
-    Constants constants = new Constants();
+    protected Constants constants;
 
     protected int speed = 250;
 
@@ -25,15 +25,21 @@ public abstract class Karel {
 
     protected KarelFrame f;
 
-    protected int[][] techBeepers = new int[constants.rows][constants.columns];
+    protected int[][] techBeepers;
 
-    protected int[][] graphBeepers = new int[constants.rows][constants.columns];
-
+    protected int[][] graphBeepers;
+    protected static String world = "DefaultWorld";
 
     public Karel() {
+        constants = new Constants(world);
+        techBeepers = new int[constants.rows][constants.columns];
+
+        graphBeepers = new int[constants.rows][constants.columns];
+
+
         f = new KarelFrame(this);
-        techBeepers = constants.addBeepers(techBeepers);
-        graphBeepers = constants.addBeepers(graphBeepers);
+        techBeepers = constants.addBeepers();
+        graphBeepers = constants.addBeepers();
         techPosX = constants.startPosX;
         techPosY = constants.startPosY;
         techCurrentDirection = constants.startDirection;
