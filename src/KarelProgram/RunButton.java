@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class RunButton extends JButton {
     Karel k;
-    static Constants constants = new Constants();
 
     ActionListener runPress = new ActionListener() {
         @Override
@@ -22,7 +21,7 @@ public class RunButton extends JButton {
 
     public RunButton(Karel parameterKarel){
         k = parameterKarel;
-        setBounds(2*constants.paddingX+constants.panelWidth, constants.paddingY, 95, 30);
+        setBounds(2*k.constants.paddingX+k.constants.panelWidth, k.constants.paddingY, 95, 30);
         setText("Run");
         addActionListener(runPress);
     }

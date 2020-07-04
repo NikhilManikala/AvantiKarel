@@ -5,14 +5,13 @@ import java.awt.*;
 
 public class KarelPanel extends JPanel {
 
-    static Constants constants = new Constants();
     Karel k;
 
     public KarelPanel(Karel parameterKarel){
         k = parameterKarel;
 
         setBackground(Color.WHITE);
-        setBounds(constants.paddingX, constants.paddingY, constants.panelWidth, constants.panelHeight);
+        setBounds(k.constants.paddingX, k.constants.paddingY, k.constants.panelWidth, k.constants.panelHeight);
     }
 
     @Override
@@ -21,24 +20,24 @@ public class KarelPanel extends JPanel {
         drawGrid(g);
         drawAllBeepers(g);
         drawKarel(g, k.graphPosX, k.graphPosY, k.graphCurrentDirection,
-                constants.cellWidth, constants.cellHeight);
+                k.constants.cellWidth, k.constants.cellHeight);
         drawAllVerticalWalls(g);
         drawAllHorizontalWalls(g);
     }
 
     private void drawAllVerticalWalls(Graphics g) {
-        for (int row = 0; row < constants.verticalWalls.length; row++) {
-            for (int col = 0; col < constants.verticalWalls[row].length; col++) {
-                if (constants.verticalWalls[row][col]){
+        for (int row = 0; row < k.constants.verticalWalls.length; row++) {
+            for (int col = 0; col < k.constants.verticalWalls[row].length; col++) {
+                if (k.constants.verticalWalls[row][col]){
                     drawVerticalWall(g, col, row);
                 }
             }
         }
     }
     private void drawAllHorizontalWalls(Graphics g) {
-        for (int row = 0; row < constants.horizontalWalls.length; row++) {
-            for (int col = 0; col < constants.horizontalWalls[row].length; col++) {
-                if (constants.horizontalWalls[row][col]){
+        for (int row = 0; row < k.constants.horizontalWalls.length; row++) {
+            for (int col = 0; col < k.constants.horizontalWalls[row].length; col++) {
+                if (k.constants.horizontalWalls[row][col]){
                     drawHorizontalWall(g, col, row);
                 }
             }
@@ -46,19 +45,19 @@ public class KarelPanel extends JPanel {
     }
 
     private void drawHorizontalWall(Graphics g, int x, int y){
-        g.fillRect(x*constants.cellWidth, y*constants.cellHeight-constants.wallThickness,
-                constants.cellWidth, 2*constants.wallThickness);
+        g.fillRect(x*k.constants.cellWidth, y*k.constants.cellHeight-k.constants.wallThickness,
+                k.constants.cellWidth, 2*k.constants.wallThickness);
     }
     private void drawVerticalWall(Graphics g, int x, int y){
-        g.fillRect(x*constants.cellWidth-constants.wallThickness, y*constants.cellHeight,
-                2*constants.wallThickness, constants.cellHeight);
+        g.fillRect(x*k.constants.cellWidth-k.constants.wallThickness, y*k.constants.cellHeight,
+                2*k.constants.wallThickness, k.constants.cellHeight);
     }
 
     private void drawAllBeepers(Graphics g) {
         for (int row = 0; row < k.graphBeepers.length; row++) {
             for (int col = 0; col < k.graphBeepers[row].length; col++) {
                 if (k.graphBeepers[row][col]>0){
-                    drawBeeper(g, col, row, constants.cellWidth, constants.cellHeight, k.graphBeepers[row][col]);
+                    drawBeeper(g, col, row, k.constants.cellWidth, k.constants.cellHeight, k.graphBeepers[row][col]);
                 }
             }
         }
@@ -66,10 +65,10 @@ public class KarelPanel extends JPanel {
 
     private void drawGrid(Graphics g) {
         int rad = 2;
-        for (int row = 0; row < constants.rows; row++) {
-            int centerY = (int) ((row+0.5) * constants.cellHeight);
-            for (int col = 0; col < constants.columns; col++) {
-                int centerX = (int) ((col+0.5) * constants.cellWidth);
+        for (int row = 0; row < k.constants.rows; row++) {
+            int centerY = (int) ((row+0.5) * k.constants.cellHeight);
+            for (int col = 0; col < k.constants.columns; col++) {
+                int centerX = (int) ((col+0.5) * k.constants.cellWidth);
                 g.fillOval(centerX-rad, centerY-rad, 2*rad, 2*rad);
             }
         }

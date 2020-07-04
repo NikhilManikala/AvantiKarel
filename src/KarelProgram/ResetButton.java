@@ -7,25 +7,24 @@ import java.util.ArrayList;
 
 public class ResetButton extends JButton {
     Karel k;
-    static Constants constants = new Constants();
 
     ActionListener runPress = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            k.techBeepers = new int[constants.rows][constants.columns];
-            k.graphBeepers = new int[constants.rows][constants.columns];
+            k.techBeepers = new int[k.constants.rows][k.constants.columns];
+            k.graphBeepers = new int[k.constants.rows][k.constants.columns];
 
-            k.techBeepers = constants.addBeepers(k.techBeepers);
-            k.graphBeepers = constants.addBeepers(k.graphBeepers);
+            k.techBeepers = k.constants.addBeepers(k.techBeepers);
+            k.graphBeepers = k.constants.addBeepers(k.graphBeepers);
 
             k.toDraw = new ArrayList<>();
-            k.techPosX = constants.startPosX;
-            k.techPosY = constants.startPosY;
-            k.techCurrentDirection = constants.startDirection;
+            k.techPosX = k.constants.startPosX;
+            k.techPosY = k.constants.startPosY;
+            k.techCurrentDirection = k.constants.startDirection;
 
-            k.graphPosX = constants.startPosX;
-            k.graphPosY = constants.startPosY;
-            k.graphCurrentDirection = constants.startDirection;
+            k.graphPosX = k.constants.startPosX;
+            k.graphPosY = k.constants.startPosY;
+            k.graphCurrentDirection = k.constants.startDirection;
 
             k.f.panel.repaint();
 
@@ -34,7 +33,7 @@ public class ResetButton extends JButton {
 
     public ResetButton(Karel parameterKarel){
         k = parameterKarel;
-        setBounds(2*constants.paddingX+constants.panelWidth, (int) (constants.paddingY + (0.5*constants.cellHeight)),
+        setBounds(2*k.constants.paddingX+k.constants.panelWidth, (int) (k.constants.paddingY + (0.5*k.constants.cellHeight)),
                 95, 30);
         setText("Reset");
         addActionListener(runPress);

@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public abstract class Karel {
 
-    static Constants constants = new Constants();
+    Constants constants = new Constants();
 
     protected int speed = 250;
     private int firstError;

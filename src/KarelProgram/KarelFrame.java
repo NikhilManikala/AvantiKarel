@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class KarelFrame extends JFrame {
-    static Constants constants = new Constants();
     Karel k;
 
     protected KarelPanel panel;
@@ -35,8 +34,8 @@ public class KarelFrame extends JFrame {
         add(reset);
 
 //      Setup
-        setSize(constants.panelWidth + constants.paddingMultiplierX * constants.paddingX,
-                constants.panelHeight + constants.paddingMultiplierY * constants.paddingY);
+        setSize(k.constants.panelWidth + k.constants.paddingMultiplierX * k.constants.paddingX,
+                k.constants.panelHeight + k.constants.paddingMultiplierY * k.constants.paddingY);
         setLayout(null);
         setVisible(true);
     }
