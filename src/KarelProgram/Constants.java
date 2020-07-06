@@ -50,21 +50,15 @@ public class Constants {
             JSONObject jObj = (JSONObject) obj;
 
             rows = (int)(long) jObj.get("rows");
-            System.out.println(rows);
             columns = (int)(long) jObj.get("columns");
-            System.out.println(columns);
             minSpeed = 0;
             maxSpeed = 500;
             defaultSpeed = 250;
 
             paddingX = (int)(long) jObj.get("paddingX");
-            System.out.println(paddingX);
             paddingY = (int)(long) jObj.get("paddingY");
-            System.out.println(paddingY);
             cellWidth = (int)(long) jObj.get("cellWidth");
-            System.out.println(cellWidth);
             cellHeight = (int)(long) jObj.get("cellHeight");
-            System.out.println(cellHeight);
             panelWidth = cellWidth * columns;
             panelHeight = cellHeight * rows;
             paddingMultiplierX = 10;
