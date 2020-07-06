@@ -31,6 +31,8 @@ public abstract class Karel {
     protected static String world = "DefaultWorld";
 
     public Karel() {
+        System.out.println("Karel is initialising...");
+
         constants = new Constants(world);
         techBeepers = new int[constants.rows][constants.columns];
 
@@ -46,6 +48,8 @@ public abstract class Karel {
         graphPosX = constants.startPosX;
         graphPosY = constants.startPosY;
         graphCurrentDirection = constants.startDirection;
+
+        System.out.println("Karel is ready.");
     }
 
     protected void draw() {

@@ -11,6 +11,8 @@ public class ResetButton extends JButton {
     ActionListener runPress = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            System.out.println("Karel is resetting...");
+
             k.techBeepers = new int[k.constants.rows][k.constants.columns];
             k.graphBeepers = new int[k.constants.rows][k.constants.columns];
 
@@ -28,6 +30,7 @@ public class ResetButton extends JButton {
 
             k.f.panel.repaint();
 
+            System.out.println("Karel has reset.");
         }
     };
 

@@ -13,8 +13,11 @@ public class RunButton extends JButton {
         public void actionPerformed(ActionEvent e) {
             k.speed = k.f.speedSlider.getValue();
             k.toDraw = new ArrayList<>();
+            System.out.println("Karel is processing your instructions...");
             k.run();
+            System.out.println("Karel is executing your instructions...");
             k.draw();
+            System.out.println("Karel has executed all of your instructions.");
         }
     };
 
