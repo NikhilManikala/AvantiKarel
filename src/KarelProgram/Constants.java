@@ -10,14 +10,15 @@ import org.json.simple.parser.ParseException;
 
 public class Constants {
 
-    //Technical Constants
+    //Technical KarelProgram.Constants
     protected int rows;
     protected int columns;
     protected int minSpeed;
     protected int maxSpeed;
     protected int defaultSpeed;
+    protected int timeout;
 
-    //Graphical Constants
+    //Graphical KarelProgram.Constants
     protected int paddingX;
     protected int paddingY;
     protected int cellWidth;
@@ -29,7 +30,7 @@ public class Constants {
 
     protected int wallThickness;
 
-    //Karel Starting Position
+    //KarelProgram.Karel Starting Position
     protected int startPosX;
     protected int startPosY;
     protected int startDirection;
@@ -68,6 +69,7 @@ public class Constants {
             panelHeight = cellHeight * rows;
             paddingMultiplierX = 10;
             paddingMultiplierY = 3;
+            timeout = 500;
 
             wallThickness = 2;
 
@@ -86,14 +88,14 @@ public class Constants {
             for (int row = 0; row < jsonVertWalls.size(); row++) {
                 JSONArray eachRow = (JSONArray) jsonVertWalls.get(row);
                 for (int col = 0; col < eachRow.size(); col++) {
-                    verticalWalls[row][col] = (boolean) eachRow.get(col);
+                    verticalWalls[row][col] = boolify(eachRow.get(col));
                 }
             }
 
             for (int row = 0; row < jsonHorWalls.size(); row++) {
                 JSONArray eachRow = (JSONArray) jsonHorWalls.get(row);
                 for (int col = 0; col < eachRow.size(); col++) {
-                    horizontalWalls[row][col] = (boolean) eachRow.get(col);
+                    horizontalWalls[row][col] = boolify(eachRow.get(col));
                 }
             }
 
@@ -107,6 +109,10 @@ public class Constants {
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean boolify(Object o) {
+        return (long) o == 1;
     }
 
     public int[][] addBeepers(){

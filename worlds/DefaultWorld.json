@@ -11,19 +11,19 @@
   "startPosY": 1,
   "startDirection": 0,
 
-  "horizontalWalls": [[true,  true,  true,  true,  true,  true,  true],
-                      [false, false, false, false, false, false, false],
-                      [false, false, false, false, false, false, false],
-                      [false, false, false, false, false, false, false],
-                      [false, false, false, false, false, false, false],
-                      [true,  true,  true,  true,  true,  true,  true]
+  "horizontalWalls": [[1, 1, 1, 1, 1, 1, 1],
+                      [0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0],
+                      [1, 1, 1, 1, 1, 1, 1]
   ],
 
-  "verticalWalls": [[true,  false, false, false, false, false, false, true],
-                    [true,  false, false,  false, false, false,  false, true],
-                    [true,  false, false,  false, false, false, false, true],
-                    [true,  false, false,  false, false, false,  false, true],
-                    [true,  false, false, false, false, false, false, true]
+  "verticalWalls": [[1, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 0, 0, 0, 0, 0, 0, 1]
 
   ],
   

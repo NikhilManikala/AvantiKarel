@@ -21,8 +21,8 @@ public class KarelFrame extends JFrame {
 
 //      Setup Graphical Data
         setBackground(Color.lightGray);
-        setTitle("Karel's World");
-//      Add Karel Panel to Window
+        setTitle("KarelProgram.Karel's World");
+//      Add KarelProgram.Karel Panel to Window
         add(panel);
 
 //      Add Buttons and Sliders

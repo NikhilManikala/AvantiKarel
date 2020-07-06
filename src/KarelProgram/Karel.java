@@ -12,7 +12,7 @@ public abstract class Karel {
 
     protected int speed = 250;
 
-    //Karel Current Position Initialisation
+    //KarelProgram.Karel Current Position Initialisation
     protected int techPosX;
     protected int techPosY;
     protected int techCurrentDirection;
